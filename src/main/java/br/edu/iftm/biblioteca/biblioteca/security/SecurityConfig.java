@@ -21,7 +21,7 @@ http.authorizeHttpRequests(
 
 auth -> auth
 .requestMatchers("/menu").hasAnyRole("ADMIN", "USER")
-.requestMatchers( "/script/**","/","/css/**", "/cadastro", "/cadastroUs" , "/login/**").permitAll()
+.requestMatchers( "/**","/js/**","/","/css/**", "/cadastro", "/cadastroUs" , "/login/**").permitAll()
 .anyRequest().authenticated()
 
 )

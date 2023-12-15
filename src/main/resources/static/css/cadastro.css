@@ -17,6 +17,10 @@ h1 {
     padding-bottom: 35px;
 }
 
+.aviso{
+	padding-bottom: 10px;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
