@@ -19,8 +19,9 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 http.authorizeHttpRequests(
 
-auth -> auth.requestMatchers( "/","/css/**", "/cadastro" , "/login/**").permitAll()
-
+auth -> auth
+.requestMatchers("/menu").hasAnyRole("ADMIN", "USER")
+.requestMatchers( "/script/**","/","/css/**", "/cadastro", "/cadastroUs" , "/login/**").permitAll()
 .anyRequest().authenticated()
 
 )

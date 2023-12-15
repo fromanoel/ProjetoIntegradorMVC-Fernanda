@@ -59,7 +59,7 @@ public class LoginController {
 public String login(HttpSession session, LoginModel loginDigitado, Model model) {
     LoginModel loginBanco = loginService.verificaSenha(loginDigitado);
     if (loginBanco == null) {
-        model.addAttribute("mensagem", "Usuario ou senha inválidos");
+        model.addAttribute("errorMessage", "Usuario ou senha inválidos");
         return "login";
     }
         List<GrantedAuthority> authorities = new ArrayList<>();
