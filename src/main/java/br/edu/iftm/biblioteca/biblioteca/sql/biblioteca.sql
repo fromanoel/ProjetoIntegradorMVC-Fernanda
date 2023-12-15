@@ -5,8 +5,8 @@ create table usuario (
     nome_usuario varchar (200) primary key,
     cpf_usuario varchar (15),
     email varchar(200),
-    senha varchar(200),
-    telefone varchar (20)
+    telefone varchar (20),
+    senha varchar(200)
 );
 
 
