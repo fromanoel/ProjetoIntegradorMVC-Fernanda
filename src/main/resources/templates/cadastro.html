@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9005c79a46.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h1>Cadastro</h1>
+            <form method="POST" action="/cadastroUs">
+                <label for="username">Nome de usuário:</label>
+                <span><input type="text" id="nome_usuario" name="nome_usuario" required><i class="fa-solid fa-user"></i></span>
+                <label for="password">CPF:</label>
+                <span><input type="text" id="cpf" name="cpf" required><i class="fa-solid fa-lock"></i></span>
+                <label for="password">Email:</label>
+                <span><input type="text" id="email" name="email" required><i class="fa-solid fa-lock"></i></span>
+                <label for="password">Telefone:</label>
+                <span><input type="text" id="telefone" name="telefone" required><i class="fa-solid fa-lock"></i></span>
+                <label for="password">Senha:</label>
+                <span><input type="password" id="senha" name="senha" required><i class="fa-solid fa-lock"></i></span>
+                <label for="password">Confirmar senha:</label>
+                <span><input type="password" id="txtCheckPwd" name="confirmaSenha" required><i class="fa-solid fa-lock"></i></span>
+                <button type="submit" id="btnCadastrar">Cadastrar</button>
+            </form>
+            <div th:if="${errorMessage}" class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
+            <p><a th:href="@{/}" class="signup-link">Clique aqui para fazer login!</a></p>
+            <p class="copyright">© 2023 - Oráculo</p>
+        </div>
+    </div>
+    <script th:src="@{/js/cadastrar.js}"></script>
+</body>
+</html>
