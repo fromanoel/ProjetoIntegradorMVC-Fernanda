@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +21,7 @@ import br.edu.iftm.biblioteca.biblioteca.model.Role;
 import br.edu.iftm.biblioteca.biblioteca.service.LoginService;
 import ch.qos.logback.classic.Logger;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
 
 @Controller
 public class LoginController {
@@ -62,20 +62,20 @@ public String login(HttpSession session, LoginModel loginDigitado, Model model) 
         model.addAttribute("mensagem", "Usuario ou senha inválidos");
         return "login";
     }
-    List<GrantedAuthority> authorities = new ArrayList<>();
-    for (Role role : loginBanco.getRoles()) {
-        if (role != null) {
-            logger.info("Registrando a role " + role.getNome() + " para o usuário logado " + loginBanco.getNome_usuario());
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getNome()));
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : loginBanco.getRoles()) {
+            if (role != null) {
+                logger.info("Registrando a role " + role.getNome() + " para o usuário logado " + loginBanco.getNome_usuario());
+                authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getNome()));
+            }
         }
-    }
-    Authentication authentication = new UsernamePasswordAuthenticationToken(
-            loginBanco.getNome_usuario(),
-            loginBanco.getSenha(),
-            authorities);
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-            SecurityContextHolder.getContext());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                loginBanco.getNome_usuario(),
+                loginBanco.getSenha(),
+                authorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                SecurityContextHolder.getContext());
     return "redirect:/menu"; 
 }
 }

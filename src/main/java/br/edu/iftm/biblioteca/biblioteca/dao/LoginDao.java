@@ -24,8 +24,8 @@ public class LoginDao {
     }
 
     public void salvarCadastro(LoginModel login) {
-        String sql = "insert into usuario(nome_usuario, cpf, email, telefone, senha) values(?,?,?,?,?)";
-        db.update(sql, new Object[] { login.getNome_usuario(), login.getCpf(), login.getEmail(), login.getTelefone() ,login.getSenha() });
+        String sql = "insert into usuario(nome_usuario, cpf_usuario, email, telefone, senha) values(?,?,?,?,?)";
+        db.update(sql, new Object[] { login.getNome_usuario(), login.getCpf_usuario(), login.getEmail(), login.getTelefone() ,login.getSenha() });
     }
 
     Logger logger = (Logger) LoggerFactory.getLogger(LoginDao.class);

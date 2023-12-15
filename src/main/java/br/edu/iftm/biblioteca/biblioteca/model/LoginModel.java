@@ -13,8 +13,11 @@ public class LoginModel {
     @NonNull
     private String nome_usuario;
 
-    private String cpf;
+    @NonNull
+    private String cpf_usuario;
+    @NonNull
     private String email;
+    @NonNull
     private String telefone;
 
     @NonNull
